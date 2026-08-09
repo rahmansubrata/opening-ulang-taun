@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Midnight Letter</title>
+  
+  <!-- Font Klasik dari Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Audio Musik Latar (Opsional) -->
+  <audio id="bgAudio" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Control Audio di Pojok Kanan Atas -->
+  <button id="audioBtn" class="audio-btn hidden" onclick="toggleAudio()">🎵 Music</button>
+
+  <div class="container">
+    
+    <!-- AMPLOP & SEGEL LILIN (Tampilan Awal) -->
+    <div id="envelopeSection" class="envelope-wrapper">
+      <div class="envelope">
+        <div class="stamp">00:00</div>
+        <div class="envelope-text">Untuk Seseorang yang Spesial</div>
+        
+        <!-- Tombol Segel Lilin -->
+        <div id="waxSeal" class="wax-seal" onclick="openLetter()">
+          <span class="initials">M</span>
+        </div>
+      </div>
+      <p class="hint-text">Sentuh segel lilin untuk membuka surat</p>
+    </div>
+
+    <!-- SURAT / PERKAMEN (Tampilan Setelah Dikelik) -->
+    <div id="letterSection" class="letter-wrapper hidden">
+      <div class="parchment">
+        <h1 class="letter-title">Selamat Ulang Tahun, Cinta</h1>
+        <div class="divider">✦ ✦ ✦</div>
+        
+        <!-- Teks Typewriter -->
+        <div id="typewriterText" class="letter-body"></div>
+
+        <!-- Teaser / Hint untuk Besok Hari -->
+        <div id="teaserBox" class="teaser-box hidden">
+          <p class="teaser-text">
+            <em>"Ini hanyalah langkah pertama dari peta perjalanan kita.<br>
+            Esok hari, petualangan yang sesungguhnya dimulai saat kita bertemu..."</em>
+          </p>
+          <div class="compass-icon">🧭</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
