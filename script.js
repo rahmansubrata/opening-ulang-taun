@@ -1,7 +1,7 @@
 // ISIKAN PESAN ROMANTIS DI SINI
-const romanticMessage = `Saat jarum jam menyentuh angka 00.00, sebuah babak baru dalam hidupmu resmi dimulai. Selamat ulang tahun.
+const romanticMessage = `Saat jarum jam menyentuh angka 00.00, sebuah babak baru dalam hidupmu resmi dimulai. Happy Birthday my love.
 
-Di dalam riuhnya dunia, kehadiranmu selalu menjadi tempat yang paling tenang untuk dituju. Terima kasih telah tumbuh menjadi pribadi yang luar biasa, berani, dan penuh kehangatan. Setiap detik yang kita lalui bersama adalah salah satu keputusan terbaik yang pernah ada.
+Di dalam riuhnya dunia, kehadiranmu selalu menjadi tempat yang paling tenang untuk dituju. Terima kasih telah tumbuh menjadi pribadi yang luar biasa, mandiri, berani, dan rasional. Setiap detik yang ku perjuangkan untuk mu agar bisa bersama adalah salah satu keputusan terbaik yang pernah ada dalam hidupku.
 
 Malam ini, aku hanya ingin kamu tahu betapa berharganya dirimu—bukan hanya untuk hari ini, tapi untuk setiap hari yang akan datang.`;
 
