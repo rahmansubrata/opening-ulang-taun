@@ -3,18 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Midnight Letter</title>
+  <title>The Midnight Letter • Celebrating You</title>
   
   <!-- Font Klasik dari Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* RESET & VARIABLE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-color: #0d0b09;
+      --parchment-color: #f7f1e5;
+      --parchment-border: #d2c2a4;
+      --text-color: #2b1e16;
+      --accent-red: #7a1c1c;
+      --gold: #c5a059;
+      --font-header: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: radial-gradient(circle at center, #1a1510 0%, #050403 100%);
+      color: var(--text-color);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 10px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* HELPER CLASSES */
+    .hidden {
+      display: none !important;
+      opacity: 0;
+    }
+
+    /* AMPLOP & SEGEL LILIN */
+    .envelope-wrapper {
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .envelope {
+      width: 320px;
+      height: 220px;
+      background: #241c15;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      margin: 0 auto 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(197, 160, 89, 0.2);
+    }
+
+    .stamp {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      border: 1px dashed var(--gold);
+      padding: 4px 8px;
+      color: var(--gold);
+      font-family: var(--font-header);
+      font-size: 0.8rem;
+    }
+
+    .envelope-text {
+      color: #d4c3a3;
+      font-family: var(--font-header);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    /* SEGEL LILIN (WAX SEAL) */
+    .wax-seal {
+      width: 65px;
+      height: 65px;
+      background: radial-gradient(circle at 30% 30%, #a81c1c, var(--accent-red));
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 -3px 6px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid #5a0000;
+    }
+
+    .wax-seal:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(139, 0, 0, 0.6), inset 0 -3px 6px rgba(0,0,0,0.4);
+    }
+
+    .initials {
+      color: var(--gold);
+      font-size: 1.5rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    }
+
+    .hint-text {
+      color: #a0907d;
+      font-size: 1rem;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    /* SURAT / PERKAMEN */
+    .letter-wrapper {
+      width: 100%;
+      animation: openPaper 1.2s forwards ease-out;
+    }
+
+    .parchment {
+      background: var(--parchment-color);
+      border: 1px solid var(--parchment-border);
+      padding: 40px 30px;
+      border-radius: 6px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 80px rgba(180, 140, 90, 0.2);
+      position: relative;
+      color: var(--text-color);
+    }
+
+    .letter-title {
+      font-family: var(--font-header);
+      font-size: 1.7rem;
+      text-align: center;
+      color: #3a2518;
+      margin-bottom: 10px;
+    }
+
+    .divider {
+      text-align: center;
+      color: var(--gold);
+      margin-bottom: 25px;
+      font-size: 1rem;
+    }
+
+    .letter-body {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      white-space: pre-line;
+      text-align: justify;
+      margin-bottom: 25px;
+    }
+
+    /* TEASER BOX (Misterius untuk Kejutan Besok) */
+    .teaser-box {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px dashed #c0b098;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .teaser-text {
+      font-size: 1.15rem;
+      color: #5c4433;
+      line-height: 1.6;
+    }
+
+    .compass-icon {
+      font-size: 2rem;
+      margin-top: 15px;
+      animation: rotateCompass 12s infinite linear;
+      display: inline-block;
+    }
+
+    /* BUTTON AUDIO */
+    .audio-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(20, 15, 10, 0.85);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-family: var(--font-header);
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .audio-btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* ANIMASI */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes openPaper {
+      0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes rotateCompass {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* RESPONSIVE UNTUK HP */
+    @media (max-width: 480px) {
+      .parchment {
+        padding: 25px 18px;
+      }
+      .letter-title {
+        font-size: 1.35rem;
+      }
+      .letter-body {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Audio Musik Latar (Opsional) -->
+  <!-- Audio Musik Latar -->
   <audio id="bgAudio" loop>
     <source src="Happy Birthday to you.mp3" type="audio/mpeg">
   </audio>
@@ -28,30 +256,30 @@
     <div id="envelopeSection" class="envelope-wrapper">
       <div class="envelope">
         <div class="stamp">00:00</div>
-        <div class="envelope-text">Untuk Seseorang yang Spesial</div>
+        <div class="envelope-text">Untuk Wanitaku yang Luar Biasa</div>
         
         <!-- Tombol Segel Lilin -->
         <div id="waxSeal" class="wax-seal" onclick="openLetter()">
-          <span class="initials">T</span>
+          <span class="initials">⚜️</span>
         </div>
       </div>
-      <p class="hint-text">Sentuh segel lilin untuk membuka surat</p>
+      <p class="hint-text">Sentuh segel untuk membuka pesan jam 00.00</p>
     </div>
 
-    <!-- SURAT / PERKAMEN (Tampilan Setelah Dikelik) -->
+    <!-- SURAT / PERKAMEN (Tampilan Setelah Diklik) -->
     <div id="letterSection" class="letter-wrapper hidden">
       <div class="parchment">
-        <h1 class="letter-title">Selamat Ulang Tahun, Sayang</h1>
-        <div class="divider">✦ ✦ ✦</div>
+        <h1 class="letter-title">Selamat Ulang Tahun ke-27, My Sweetheart</h1>
+        <div class="divider">✦ 🧭 ✦</div>
         
         <!-- Teks Typewriter -->
         <div id="typewriterText" class="letter-body"></div>
 
-        <!-- Teaser / Hint untuk Besok Hari -->
+        <!-- Teaser Kejutan Untuk Besok Hari -->
         <div id="teaserBox" class="teaser-box hidden">
           <p class="teaser-text">
-            <em>"Ini hanyalah langkah pertama dari peta perjalanan kita.<br>
-            Esok hari, petualangan yang sesungguhnya dimulai saat kita bertemu..."</em>
+            <em>"Ini hanyalah ucapan awal dari perjalanan perayaanmu.<br>
+            Istirahatlah yang cukup malam ini, karena kejutan dan petualangan sesungguhnya siap menyambutmu esok hari..."</em>
           </p>
           <div class="compass-icon">🧭</div>
         </div>
@@ -60,6 +288,82 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // PESAN PEMBUKA JAM 00.00
+    const romanticMessage = `Saat jarum jam menyentuh angka 00.00, sebuah babak baru dalam hidupmu resmi dimulai. Happy Birthday, My Sweetheart! 🥂✨
+
+Di tengah dunia dan situasi negara yang sering kali penuh ketidakpastian dan bikin pusing, malam ini aku cuma mau fokus merayakan satu hal yang sangat berharga: Kehadiran dan kehebatan dirimu.
+
+Kamu adalah sosok wanita paling rasional, mandiri, dan luar biasa yang pernah kutemui sejak masa sekolah dulu. Bertahan dan berkembang sampai di titik usia 27 tahun ini bukanlah hal yang sepele, dan aku sangat bangga padamu.`;
+
+    // Konfigurasi Kecepatan Ketik (milidetik)
+    const typingSpeed = 35; 
+    let index = 0;
+
+    function openLetter() {
+      const envelopeSection = document.getElementById('envelopeSection');
+      const letterSection = document.getElementById('letterSection');
+      const audioBtn = document.getElementById('audioBtn');
+      const bgAudio = document.getElementById('bgAudio');
+
+      // Mulai Musik
+      bgAudio.play().catch(err => {
+        console.log("Autoplay dicegah browser, klik tombol musik manual.");
+      });
+
+      // Tampilkan Tombol Audio
+      audioBtn.classList.remove('hidden');
+
+      // Efek Menghilangkan Amplop dan Menampilkan Surat
+      envelopeSection.style.transition = 'all 0.8s ease';
+      envelopeSection.style.opacity = '0';
+      envelopeSection.style.transform = 'scale(0.9)';
+
+      setTimeout(() => {
+        envelopeSection.classList.add('hidden');
+        letterSection.classList.remove('hidden');
+        
+        // Jalankan Animasi Typewriter
+        typeWriter();
+      }, 800);
+    }
+
+    // Fungsi Efek Ketik (Typewriter)
+    function typeWriter() {
+      const textContainer = document.getElementById('typewriterText');
+      
+      if (index < romanticMessage.length) {
+        textContainer.innerHTML += romanticMessage.charAt(index);
+        index++;
+        setTimeout(typeWriter, typingSpeed);
+      } else {
+        // Setelah selesai mengetik, tampilkan Teaser
+        showTeaser();
+      }
+    }
+
+    // Fungsi Tampilkan Teaser
+    function showTeaser() {
+      const teaserBox = document.getElementById('teaserBox');
+      setTimeout(() => {
+        teaserBox.classList.remove('hidden');
+        teaserBox.scrollIntoView({ behavior: 'smooth' });
+      }, 600);
+    }
+
+    // Control Play/Pause Audio
+    function toggleAudio() {
+      const bgAudio = document.getElementById('bgAudio');
+      const audioBtn = document.getElementById('audioBtn');
+
+      if (bgAudio.paused) {
+        bgAudio.play();
+        audioBtn.innerHTML = "🎵 Music: ON";
+      } else {
+        bgAudio.pause();
+        audioBtn.innerHTML = "🔇 Music: OFF";
+      }
+    }
+  </script>
 </body>
 </html>
